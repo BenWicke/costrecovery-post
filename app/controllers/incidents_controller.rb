@@ -7,26 +7,33 @@ class IncidentsController < ApplicationController
   def index
     if current_user.admin == "yes"
 	
-	#  if params[:user][:id]
-	#  @incidents = Incident.where("user_id = ?", params[:user][:id])
-	#  @users = User.all
-	#  else	  
-    #   @incidents = Incident.all(:order => 'id DESC')
-	 
-    # Fiters through each department
-    if params[:search]
-         @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC').find(:all, :conditions => ['department LIKE ?', "%#{params[:search]}%"], :joins => [:user => :profile])
-    # Search through specific column
-    elsif params[:searchInvoice]
-         @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC').find(:all, :conditions => ['report_nr LIKE ?', "%#{params[:searchInvoice]}%"])
-    # Display all with pagination
-    else
-         @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC')
-         @users = User.all
-    end
-
-	else
-	@incidents = current_user.incidents
+    	#  if params[:user][:id]
+    	#  @incidents = Incident.where("user_id = ?", params[:user][:id])
+    	#  @users = User.all
+    	#  else	  
+      #  Bens code
+      #  @incidents = Incident.all(:order => 'id DESC')
+    
+    
+      # If an admin logs in
+      # Fiters through each department
+      if params[:search]
+           @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC').find(:all, :conditions => ['department LIKE ?', "%#{params[:search]}%"], :joins => [:user => :profile])
+      # Search through specific column
+      elsif params[:searchInvoice]
+           @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC').find(:all, :conditions => ['report_nr LIKE ?', "%#{params[:searchInvoice]}%"])
+      # Display all with pagination
+      else
+           @incidents = Incident.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC')
+      end
+	
+  
+  
+      # If not an admin
+    	else
+        @incidents = current_user.incidents.paginate(:page => params[:page], :per_page => 10, :order => 'id DESC')
+        @users = User.all
+        
   end
   
     respond_to do |format|

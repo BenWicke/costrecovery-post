@@ -1,6 +1,9 @@
 
 <div id="submitit">
 <%= button_to 'Submit A New Incident', new_incident_path, :method => 'get' %>
+
+<!-- SEARCH FORM AND DROP DOWN ONLY VISIBLE TO ADMIN -->
+<% if current_user.admin == "yes" %>
 <!-- SEARCH FORM 
 <%= form_tag incidents_path, :method => 'get' do %>
 	<p>
@@ -13,7 +16,6 @@
 
 <!-- DROP DOWN MENU -->
 <script type="text/javascript">
-<!--
 function dropdown(mySel)
 {
 var myWin, myVal;
@@ -45,8 +47,9 @@ return false;
 <INPUT TYPE=SUBMIT VALUE="Go">
 </p>
 </FORM><!-- DROP DOWN MENU -->
+<% end %> <!-- END OF IF CURRENT_USER IS ADMIN -->
 
-</div>
+</div><!-- end of submitit div -->
 
 <% if Incident.count != 0 %>
 
@@ -79,21 +82,24 @@ return false;
 <% end %>
 </table>
 
-<% if params[:searchInvoice]%>
+
+<% if current_user.admin == "yes" %>
+<!-- NEEDED FOR PAGNIATION, IF AN ADMIN -->
+<% if params[:searchInvoice]%> <!-- FOR SEARCHING -->
 	<div class="flickr_pagination">
 		<%= will_paginate @incidents, :container => false %>
 		<div class="page_info">
 			<%= page_entries_info @incidents %>
 		</div>
 	</div>
-<% elsif params[:search]%>
+<% elsif params[:search]%> <!-- FOR FILTERING -->
 	<div class="flickr_pagination">
 		<%= will_paginate @incidents, :container => false %>
 		<div class="page_info">
 			<%= page_entries_info @incidents %>
 		</div>
 	</div>
-<% else %>
+<% else %> <!-- FOR DEFAULT PAGINATION -->
 	<div class="flickr_pagination">
 		<%= will_paginate @incidents, :container => false %>
 		<div class="page_info">
@@ -102,7 +108,19 @@ return false;
 	</div>
 <% end %>
 
+
+<% else %><!-- IF CURRENT_USER NOT ADMIN -->
+<div class="flickr_pagination">
+	<%= will_paginate @incidents, :container => false %>
+	<div class="page_info">
+		<%= page_entries_info @incidents %>
+	</div>
 </div>
+
+<% end %> <!-- END OF IF CURRENT_USER IS ADMIN -->
+
+</div> <!-- END OF INCIDENTLIST DIV -->
+
 
 <% else %>
 <p>(Your incidents will be listed here after you add the first one)</p>
