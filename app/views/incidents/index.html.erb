@@ -4,15 +4,15 @@
 
 <!-- SEARCH FORM AND DROP DOWN ONLY VISIBLE TO ADMIN -->
 <% if current_user.admin == "yes" %>
-<!-- SEARCH FORM 
+<!-- SEARCH FORM -->
 <%= form_tag incidents_path, :method => 'get' do %>
 	<p>
-		Invoice: <%= text_field_tag :searchInvoice %>
+		Incident Report #: <%= text_field_tag :searchInvoice %>
 		<%= submit_tag "Search", :name => nil %>
 	</p>
 
 <% end %>
--->
+
 
 <!-- DROP DOWN MENU -->
 <script type="text/javascript">
