@@ -5,7 +5,7 @@ namespace :import_fire_fighters_csv do
 	task :create_fire_fighters => :environment do
 		puts "Import Fire Fighters"
 	
-		csv_text = File.read('/Users/Ben/Sites/ror/LFD/fire_fighters.csv', :encoding => 'windows-1251:utf-8')
+		csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/fire_fighters.csv', :encoding => 'windows-1251:utf-8')
 		csv = CSV.parse(csv_text, :headers => true)
 		csv.each_with_index do |row,index|
 			row = row.to_hash.with_indifferent_access
