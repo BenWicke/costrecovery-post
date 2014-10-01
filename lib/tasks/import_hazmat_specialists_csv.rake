@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_hazmat_specialists_csv do
 

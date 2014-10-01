@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_fire_fighters_csv do
 

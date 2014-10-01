@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_safety_officers_csv do
 

@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_emergency_supports_csv do
 

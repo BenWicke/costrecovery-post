@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_field_units_csv do
 

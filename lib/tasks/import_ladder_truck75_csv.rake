@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_ladder_truck75_csv do
 

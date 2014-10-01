@@ -1,4 +1,5 @@
 require 'csv'
+require 'open-uri'
 
 namespace :import_tankers_csv do
 

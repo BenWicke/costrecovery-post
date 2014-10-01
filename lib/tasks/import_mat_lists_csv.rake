@@ -23,6 +23,7 @@
 
 
 require 'csv'
+require 'open-uri'
 
 namespace :import_mat_lists_csv do
 
