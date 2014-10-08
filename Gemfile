@@ -5,6 +5,8 @@ gem 'rails', '3.2.13'
 #gem 'taps', '0.3.24'
 
 gem 'will_paginate', '~> 3.0.5'
+gem 'aws-s3', '~> 0.6.3'
+gem 's3', '~> 0.3.21'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
