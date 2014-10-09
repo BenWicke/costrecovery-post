@@ -25,9 +25,11 @@ end
 
 
 =begin
-url = URL.new('http://www.ciagent-stormwater.com/irst/connect/sample.txt', 'r')
-url.gets
-#response = url.get
+pay no attention to
+
+  url = URL.new('http://www.ciagent-stormwater.com/irst/connect/sample.txt', 'r')
+  url.gets
+  response = url.get
 =end
 
 
@@ -37,8 +39,8 @@ service.buckets
 =end
                           
                           
-#new_bucket = service.buckets.build("fireballs_on_the_east_coast_4444444444444")
-#new_bucket.save(:location => :us)
+new_bucket = service.buckets.build("fireballs_on_the_east_coast_4444444444444")
+new_bucket.save(:location => :us)
 
 
 
@@ -48,10 +50,17 @@ s3.buckets.each do |bucket|
 end
 
 
-#AWS::S3::Service.buckets
-#first_bucket = service.buckets.find("fireballs_on_the_east_coast_1234874634")
+AWS::S3::Service.buckets
+first_bucket = service.buckets.find("fireballs_on_the_east_coast_1234874634")
 
 
+=begin
+attempt to connect via ftp; pay no attention to
+
+    ftp = FtpSync.new 'http://ciagent-stormwater.com', 'dparker-ciagent', 'ciagent'
+    ftp.pull_dir '../connect', '/webroot/irst/connect', :since => Time.now
+
+=end
 
 
 namespace :import_incidents_csv do
@@ -59,11 +68,11 @@ namespace :import_incidents_csv do
 	task :create_incidents => :environment do
 		puts "Import Incidents"
     
-#    ftp = FtpSync.new 'http://ciagent-stormwater.com', 'dparker-ciagent', 'ciagent'
-#    ftp.pull_dir '../connect', '/webroot/irst/connect', :since => Time.now
 
 
 
+=begin 
+trying to figure out how to reference a a csv file from an above directory
 
 
     #puts __FILE__
@@ -72,6 +81,8 @@ namespace :import_incidents_csv do
     #File.join(File.dirname(__FILE__), '..', "Lexington")
     #puts "#{current}"
     #puts File.expand_path(Dir.pwd, '..')
+    
+=end    
     
 		
 		csv_text = File.read('..', 'Lexington', 'incidents.csv', :encoding => 'windows-1251:utf-8')
