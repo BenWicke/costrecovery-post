@@ -1,12 +1,20 @@
 require 'csv'
 require 's3'
-#require 'aws/s3'
+require 'aws-sdk'
+require 'aws/s3'
 #require 'net/ftp'
 
+=begin
 
-service = S3::Service.new(:access_key_id => "AKIAI5CRDNOCVAEAM5SA",
+AWS.config(
+  :access_key_id => 'AKIAI5CRDNOCVAEAM5SA',
+  :secret_access_key => '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')
+=end
+
+=begin
+s3 = S3::Service.new(:access_key_id => "AKIAI5CRDNOCVAEAM5SA",
                           :secret_access_key => "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")
-
+=end
 
 =begin
 Net::FTP.open('97.74.158.128', 'crpost', 'Recovery1!') do |ftp|
@@ -29,8 +37,21 @@ service.buckets
 =end
                           
                           
-new_bucket = service.buckets.build("newbucketname")
-new_bucket.save(:location => :us)
+#new_bucket = service.buckets.build("fireballs_on_the_east_coast_4444444444444")
+#new_bucket.save(:location => :us)
+
+
+
+s3 = AWS::S3.new
+s3.buckets.each do |bucket|
+  puts bucket.name
+end
+
+
+#AWS::S3::Service.buckets
+#first_bucket = service.buckets.find("fireballs_on_the_east_coast_1234874634")
+
+
 
 
 namespace :import_incidents_csv do
@@ -44,14 +65,16 @@ namespace :import_incidents_csv do
 
 
 
-=begin    
-    puts __FILE__
-    puts File.expand_path(__FILE__)
-    puts File.dirname(__FILE__)
-    puts File.join(File.dirname(__FILE__), '..', 'connect')
-=end
+
+    #puts __FILE__
+    #puts File.expand_path(__FILE__)
+    #puts File.dirname(__FILE__)
+    #File.join(File.dirname(__FILE__), '..', "Lexington")
+    #puts "#{current}"
+    #puts File.expand_path(Dir.pwd, '..')
+    
 		
-		csv_text = File.read('/Users/Ben/Sites/ror/LFD/incidents.csv', :encoding => 'windows-1251:utf-8')
+		csv_text = File.read('..', 'Lexington', 'incidents.csv', :encoding => 'windows-1251:utf-8')
 		csv = CSV.parse(csv_text, :headers => true)
 		
 		@incident_id_array = []

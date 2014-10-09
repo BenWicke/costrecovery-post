@@ -35,6 +35,11 @@ GEM
       builder
       mime-types
       xml-simple
+    aws-sdk (1.54.0)
+      aws-sdk-v1 (= 1.54.0)
+    aws-sdk-v1 (1.54.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -62,6 +67,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.7.2)
+    nokogiri (1.4.4)
     pg (0.15.0)
     pg (0.15.0-x86-mingw32)
     polyglot (0.3.3)
@@ -138,6 +144,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgresql-adapter
   aws-s3 (~> 0.6.3)
+  aws-sdk
   coffee-rails (~> 3.2.1)
   jquery-rails
   pg
