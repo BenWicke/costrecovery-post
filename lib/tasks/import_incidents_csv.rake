@@ -1,7 +1,10 @@
 require 'csv'
-require 's3'
-require 'aws-sdk'
-require 'aws/s3'
+require 'open-uri'
+#require 's3'
+#Below is the most up to date gem 
+#require 'aws-sdk'
+
+#require 'aws/s3'
 #require 'net/ftp'
 
 =begin
@@ -38,7 +41,7 @@ puts "buckets"
 service.buckets
 =end
                           
-                          
+=begin                          
 new_bucket = service.buckets.build("fireballs_on_the_east_coast_4444444444444")
 new_bucket.save(:location => :us)
 
@@ -63,14 +66,6 @@ attempt to connect via ftp; pay no attention to
 =end
 
 
-namespace :import_incidents_csv do
-
-	task :create_incidents => :environment do
-		puts "Import Incidents"
-    
-
-
-
 =begin 
 trying to figure out how to reference a a csv file from an above directory
 
@@ -82,11 +77,17 @@ trying to figure out how to reference a a csv file from an above directory
     #puts "#{current}"
     #puts File.expand_path(Dir.pwd, '..')
     
-=end    
-    
+=end     
+
+
+namespace :import_incidents_csv do
+
+	task :create_incidents => :environment do
+		puts "Import Incidents"    
 		
-		csv_text = File.read('..', 'Lexington', 'incidents.csv', :encoding => 'windows-1251:utf-8')
-		csv = CSV.parse(csv_text, :headers => true)
+		#csv_text = File.read('/Users/Ben/Sites/ror/LFD/incidents.csv', :encoding => 'windows-1251:utf-8')
+		csv_text = open("http://www.ciagent-stormwater.com/Lexington_Files/incidents.csv") {|f| f.read}
+    csv = CSV.parse(csv_text, :headers => true)
 		
 		@incident_id_array = []
 		@report_nr_array = []

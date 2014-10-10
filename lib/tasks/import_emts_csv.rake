@@ -6,8 +6,9 @@ namespace :import_emts_csv do
 	task :create_emts => :environment do
 		puts "Import EMTS"
 	
-		csv_text = File.read('/Users/Ben/Sites/ror/LFD/emts.csv', :encoding => 'windows-1251:utf-8')
-		csv = CSV.parse(csv_text, :headers => true)
+		#csv_text = File.read('/Users/Ben/Sites/ror/LFD/emts.csv', :encoding => 'windows-1251:utf-8')
+		csv_text = open("http://www.ciagent-stormwater.com/Lexington_Files/emts.csv") {|f| f.read}
+    csv = CSV.parse(csv_text, :headers => true)
 		csv.each_with_index do |row,index|
 			row = row.to_hash.with_indifferent_access
 			Emt.create!(row.to_hash.symbolize_keys)

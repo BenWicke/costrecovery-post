@@ -29,8 +29,8 @@ namespace :import_mat_lists_csv do
 
 	task :create_mat_lists => :environment do
 		puts "Import Material List"
-	
-		csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/mat_lists.csv', :encoding => 'windows-1251:utf-8')
+		#csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/mat_lists.csv', :encoding => 'windows-1251:utf-8')
+    csv_text = open("http://www.ciagent-stormwater.com/Lexington_Files/mat_lists.csv") {|f| f.read}
 		csv = CSV.parse(csv_text, :headers => true)
 		csv.each_with_index do |row,index|
 			row = row.to_hash.with_indifferent_access

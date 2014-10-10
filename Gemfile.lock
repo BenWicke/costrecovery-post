@@ -31,15 +31,6 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
-    aws-s3 (0.6.3)
-      builder
-      mime-types
-      xml-simple
-    aws-sdk (1.54.0)
-      aws-sdk-v1 (= 1.54.0)
-    aws-sdk-v1 (1.54.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -67,11 +58,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.7.2)
-    nokogiri (1.4.4)
     pg (0.15.0)
     pg (0.15.0-x86-mingw32)
     polyglot (0.3.3)
-    proxies (0.2.1)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -99,8 +88,6 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    s3 (0.3.21)
-      proxies (~> 0.2.0)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -135,7 +122,6 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     will_paginate (3.0.7)
-    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
@@ -143,13 +129,10 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
-  aws-s3 (~> 0.6.3)
-  aws-sdk
   coffee-rails (~> 3.2.1)
   jquery-rails
   pg
   rails (= 3.2.13)
-  s3 (~> 0.3.21)
   sass-rails (~> 3.2.3)
   sequel
   sqlite3

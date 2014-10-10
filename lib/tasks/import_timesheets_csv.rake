@@ -6,7 +6,8 @@ namespace :import_timesheets_csv do
 	task :create_timesheets => :environment do
 		puts "Import Timesheets"
 	
-		csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/timesheets.csv', :encoding => 'windows-1251:utf-8')
+#		csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/timesheets.csv', :encoding => 'windows-1251:utf-8')
+    csv_text = open("http://www.ciagent-stormwater.com/Lexington_Files/timesheets.csv") {|f| f.read}
 		csv = CSV.parse(csv_text, :headers => true)
 		@timesheet_id_array = []
 		csv.each_with_index do |row,index|
