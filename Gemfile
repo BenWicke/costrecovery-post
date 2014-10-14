@@ -6,6 +6,12 @@ gem 'rails', '3.2.13'
 
 gem 'will_paginate', '~> 3.0.5'
 
+=begin
+This gem is still installed but probably won't need
+gem 'aws-sdk'
+=end
+
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
