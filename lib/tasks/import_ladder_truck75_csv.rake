@@ -7,7 +7,7 @@ namespace :import_ladder_truck75_csv do
 		puts "Import Ladder Truck 75 ft"
 	
 #		csv_text = File.read('http://www.ciagent-stormwater.com/Lexington_Files/ladder_truck75.csv', :encoding => 'windows-1251:utf-8')
-    csv_text = open("http://www.ciagent-stormwater.com/Lexington_Files/ladder_truck75.csv") {|f| f.read}
+    csv_text = open("http://www.ciagent-stormwater.com/irst/lexington/ladder_truck75.csv") {|f| f.read}
 		csv = CSV.parse(csv_text, :headers => true)
 		csv.each_with_index do |row,index|
 			row = row.to_hash.with_indifferent_access
