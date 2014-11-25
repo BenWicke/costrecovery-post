@@ -9,6 +9,7 @@ namespace :import_incidents_csv do
 
 		
 		#csv_text = File.read('/Users/Ben/Sites/ror/LFD/incidents.csv', :encoding => 'windows-1251:utf-8')
+		
 		csv_text = open("http://www.ciagent-stormwater.com/irst/lexington/incidents.csv") {|f| f.read}
     csv = CSV.parse(csv_text, :headers => true)
 		
